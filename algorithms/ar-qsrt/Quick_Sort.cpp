@@ -1,14 +1,16 @@
 #include<iostream>
+#include<bits/stdc++.h>
+
 using namespace std;
 
-void swap(int arr[], int i, int j)
+void swap(vector <int> &arr, int i, int j)
 {
     int temp=arr[i];
     arr[i]=arr[j];
     arr[j]=temp;
 }
 
-int partition(int arr[], int l, int r)
+int partition(vector <int> &arr, int l, int r)
 {
     int pivot=arr[r];
     int i=l-1;
@@ -25,7 +27,7 @@ int partition(int arr[], int l, int r)
     return i+1;
 }
 
-void quickSort(int arr[], int l, int r)
+void quickSort(vector <int> &arr, int l, int r)
 {
     if(l<r)
     {
@@ -38,12 +40,40 @@ void quickSort(int arr[], int l, int r)
 
 int main()
 {
-    int arr[]={15, 8, 6, 19, 22, 2, 5};
-    quickSort(arr, 0, 6);
-    for(int i=0; i<7; i++)
+    vector <int> arr;
+    int len;
+    cout<<"enter the count of the array yu will be entering\n";
+    cin>>len;
+    cout<<"Enter the values to be sorted=\n";
+    for(int i=0; i<len; i++)
+    {
+        int num;
+        cin>>num;
+        arr.push_back(num);
+    }
+    
+    
+    char choice;
+    cout<<"Press A for sorting in ascending or D for descending sort\n";
+    cin>>choice;
+    while(choice!='A' && choice!='D')
+    {
+        cout<<"PLease enter proper choice=\n";
+        cin>>choice;
+    }
+    quickSort(arr, 0, arr.size()-1);
+    if(choice=='A')
+    for(int i=0; i<arr.size(); i++)
     {
         cout<<arr[i]<<" ";
-    } 
+    }
+    else
+    {
+        for(int i=arr.size()-1; i>=0; i--)
+    {
+        cout<<arr[i]<<" ";
+    }
+    }
     cout<<endl;
     return 0;
 }
